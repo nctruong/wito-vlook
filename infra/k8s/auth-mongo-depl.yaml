@@ -26,6 +26,6 @@ spec:
     app: auth-mongo # select Pod with label auth-mongo above
   ports: 
     - name: db
-      protocal: TCP 
+      protocol: TCP 
       port: 27017
       targetPort: 27017
