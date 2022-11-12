@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator' // https://express-validator.github.io/docs/
+import jwt from 'jsonwebtoken'
 import { RequestValidationError } from '../errors/request-validation-error'
 import { DatabaseConnectionError } from '../errors/database-connection-error'
 import { User } from '../models/user'
@@ -29,10 +30,16 @@ async (req: Request, res: Response) => {
     if (existingUser) {
         throw new BadRequestError('User existed')
     }
-    console.log(`existingUser: ${existingUser}`)
+
     const user = User.build({ email, password })
     await user.save()
-    console.log('user created ')
+
+    const userJwt = jwt.sign({
+        id: user.id,
+        email: user.email
+    }, 'asdf')
+    req.session = { jwt: userJwt }
+
     res.status(201).send(user)
 })
 export { router as signupRouter };
