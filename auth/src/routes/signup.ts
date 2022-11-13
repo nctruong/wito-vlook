@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express'
-import { body, validationResult } from 'express-validator' // https://express-validator.github.io/docs/
+import { body } from 'express-validator' // https://express-validator.github.io/docs/
 import jwt from 'jsonwebtoken'
-import { RequestValidationError } from '../errors/request-validation-error'
-import { DatabaseConnectionError } from '../errors/database-connection-error'
 import { User } from '../models/user'
 import { BadRequestError } from '../errors/bad-request-error'
+import { validateRequest } from '../middlewares/validate-request'
 
 const router = express.Router()
 
@@ -17,13 +16,8 @@ router.post('/api/users/signup', [
         .isLength({min: 4, max: 20})
         .withMessage('Password must be between 4 and 40 chars')
 ],
+validateRequest,
 async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()){
-        throw new RequestValidationError(errors.array())
-    }
-    console.log('Creating user...')
 
     const { email, password } = req.body 
     const existingUser = await User.findOne({ email })
