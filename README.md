@@ -23,3 +23,7 @@ tsc --init
 npm run build
 npm version patch
 npm publish
+
+## Issues
+container auth-mongo is waiting to start: mongo can't be pulled
+=> docker pull mongo && skaffold delete && skaffold dev 
