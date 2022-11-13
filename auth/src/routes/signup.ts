@@ -37,7 +37,8 @@ async (req: Request, res: Response) => {
     const userJwt = jwt.sign({
         id: user.id,
         email: user.email
-    }, 'asdf')
+    }, 
+    process.env.JWT_KEY!) // !: hey, no worries I will check it, I know for sure it defined.
     req.session = { jwt: userJwt }
 
     res.status(201).send(user)
