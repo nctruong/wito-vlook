@@ -8,3 +8,6 @@ pod - task
 
 ## Node.js vs Ruby on Rails
 middleware - before_action
+supertest - rspec API call
+mongodb-memory-server - create test database
+test/setup.ts - rspec_helper, rails_helper
