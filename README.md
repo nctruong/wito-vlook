@@ -2,6 +2,9 @@
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=vlookbywillnguyen
 kubectl get secrets
 
+## Ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml
+
 ## kubernetes vs ecs
 deployment - task definition
 pod - task
@@ -27,3 +30,7 @@ npm publish
 ## Issues
 container auth-mongo is waiting to start: mongo can't be pulled
 => docker pull mongo && skaffold delete && skaffold dev 
+
+## Nats
+kubectl get pods 
+kubectl port-forward nats-depl-c96c8fc48-l5xcg 4222:4222
