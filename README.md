@@ -1,5 +1,8 @@
 ## Create the secret for signing Jwt
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=vlookbywillnguyen
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=sk_test_WCqNFQEC9XbD5od0T8fRvnLV
+
+kubectl delete secret stripe-secret
 kubectl get secrets
 
 ## Ingress
@@ -26,6 +29,7 @@ tsc --init
 npm run build
 npm version patch
 npm publish
+git rm --cached . -rf
 
 ## Issues
 container auth-mongo is waiting to start: mongo can't be pulled
@@ -34,3 +38,4 @@ container auth-mongo is waiting to start: mongo can't be pulled
 ## Nats
 kubectl get pods 
 kubectl port-forward nats-depl-c96c8fc48-l5xcg 4222:4222
+kubectl port-forward nats-depl-c96c8fc48-l5xcg 8222:8222
