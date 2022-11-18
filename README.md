@@ -39,3 +39,9 @@ container auth-mongo is waiting to start: mongo can't be pulled
 kubectl get pods 
 kubectl port-forward nats-depl-c96c8fc48-l5xcg 4222:4222
 kubectl port-forward nats-depl-c96c8fc48-l5xcg 8222:8222
+
+## LOGS
+kubectl logs pod-name
+
+## Issue of cache?
+skaffold dev --no-prune=false --cache-artifacts=false

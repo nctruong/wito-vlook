@@ -10,18 +10,32 @@ spec:
     - host: vlook.dev
       http:
         paths:
+          - path: /api/payments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payments-srv
+                port:
+                  number: 3000
           - path: /api/users/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: auth-srv
-                port: 
+                port:
                   number: 3000
           - path: /api/tickets/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: tickets-srv
+                port:
+                  number: 3000
+          - path: /api/orders/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orders-srv
                 port:
                   number: 3000
           - path: /?(.*)
