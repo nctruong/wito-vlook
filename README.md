@@ -45,3 +45,18 @@ kubectl logs pod-name
 
 ## Issue of cache?
 skaffold dev --no-prune=false --cache-artifacts=false
+
+## Deploy Kubernetes to AWS
+eksctl create cluster --name vlook --region ap-southeast-1 --fargate
+
+10035* eksctl version\n
+10036* /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"\n
+10037* cd ~
+10038* /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"\n
+10039  cd ~
+10040  brew tap weaveworks/tap\n
+10041* brew install weaveworks/tap/eksctl\n
+10042  eksctl version\n
+10043  eksctl create cluster --name vlook --region ap-southeast-1 --fargate
+10044  kubectl get nodes -o wide
+10045  kubectl get pods -A -o wide
